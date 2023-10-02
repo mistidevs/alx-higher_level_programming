@@ -15,7 +15,7 @@ All your files must be executable<br>
 The length of your files will be tested using wc</p>
 
 <h3>Shell Scripts</h3>
-<p>>Allowed editors: vi, vim, emacs<br>
+<p>Allowed editors: vi, vim, emacs<br>
 All your scripts will be tested on Ubuntu 20.04 LTS<br>
 All your scripts should be exactly two lines long (wc -l file should print 2)<br>
 All your files should end with a new line<br>
