@@ -1,9 +1,9 @@
-#ALX SE Higher Level Programming
+<h1>ALX SE Higher Level Programming</h1>
 The repositroy that unifies all the Python and [I will add other languages shortly] I created in
 the ALX SE program. It turns out that C is also a part of this journey. The aim is to #DoHardThings.
 
-##Notes
-###Python Scripts
+<h2>Notes</h2>
+<h3>Python Scripts</h3>
 Allowed editors: vi, vim, emacs
 All your files will be interpreted/compiled on Ubuntu 20.04 LTS using python3 (version 3.8.5)
 All your files should end with a new line
@@ -14,7 +14,7 @@ Your code should use the pycodestyle (version 2.8.*)
 All your files must be executable
 The length of your files will be tested using wc
 
-###Shell Scripts
+<h3>Shell Scripts</h3>
 Allowed editors: vi, vim, emacs
 All your scripts will be tested on Ubuntu 20.04 LTS
 All your scripts should be exactly two lines long (wc -l file should print 2)
@@ -22,9 +22,9 @@ All your files should end with a new line
 The first line of all your files should be exactly #!/bin/bash
 All your files must be executable
 
-###C Scripts
+<h3>C Scripts</h3>
 Allowed editors: vi, vim, emacs
-All your files will be compiled on Ubuntu 20.04 LTS using gcc, using the options -Wall -Werror -Wextra -pedantic -std=gnu89
+All your files will be compiled on Ubuntu 20.04 LTS using gcc, using the options `-Wall -Werror -Wextra -pedantic -std=gnu89`
 All your files should end with a new line
 Your code should use the Betty style. It will be checked using betty-style.pl and betty-doc.pl
 You are not allowed to use global variables
