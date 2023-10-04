@@ -31,7 +31,7 @@ while (curr != NULL)
 {
 	if (curr->next->n > number || curr->next == NULL)
 	{
-		temp = curr;
+		temp = curr->next;
 		curr = malloc(sizeof(listint_t));
 		if (curr == NULL)
 			return (NULL);
