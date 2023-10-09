@@ -2,15 +2,8 @@
 def max_integer(my_list=[]):
     if not my_list:
         return None
-    for i in range(len(my_list)):
-        swapped = False
-        for j in range(len(my_list) - i - 1):
-            if my_list[j] < my_list[i + 1]:
-                temp = my_list[j]
-                my_list[j] = my_list[j + 1]
-                my_list[j + 1] = temp
-                swapped = True
-        if not swapped:
-            break
-
-    return my_list[0]
+    max_value = my_list[0]
+    for i in range(1, len(my_list)):
+        if my_list[i] > max_value:
+            max_value = my_list[i]
+    return max_value
