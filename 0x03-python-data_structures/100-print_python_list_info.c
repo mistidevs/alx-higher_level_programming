@@ -1,6 +1,4 @@
-#include <time.h>
 #include <Python.h>
-#include <stdio.h>
 
 /**
 * print_python_list_info - writing CPython code to analyse Python code
