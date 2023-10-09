@@ -3,9 +3,9 @@ def no_c(my_string):
     if not my_string:
         return
     new_string = ""
-    for l in my_string:
-        if l != 'c' and l != 'C':
-            new_string += l
+    for char in my_string:
+        if char != 'c' and char != 'C':
+            new_string += char
     return new_string
 
 
