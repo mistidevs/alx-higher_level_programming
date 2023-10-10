@@ -38,7 +38,7 @@ listint_t *fast = *head;
 listint_t *half;
 listint_t *temp;
 
-if (head == NULL || *head == NULL)
+if (head == NULL || *head == NULL || (*head)->next == NULL)
 	return (1);
 
 while (fast != NULL && fast->next != NULL)
