@@ -10,4 +10,3 @@ def search_replace(my_list, search, replace):
 
 if __name__ == '__main__':
     search_replace()
-    
