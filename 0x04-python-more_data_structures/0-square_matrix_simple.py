@@ -7,5 +7,6 @@ def square_matrix_simple(matrix=[]):
             mat[i].append(x)
     return mat
 
+
 if __name__ == '__main__':
     square_matrix_simple()
