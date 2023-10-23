@@ -10,5 +10,6 @@ def safe_print_integer_err(value):
         print("Exception: {}".format(ve), file=sys.stderr)
         return False
 
+
 if __name__ == '__main__':
     safe_print_integer_err()
