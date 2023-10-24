@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
+""" Define a class Square"""""
+
 class Square:
-    """ python3 -c 'print(__import__("my_module").MyClass.__doc__)'
-    A generic Square class that does nothing """
+    """ A generic class that passes """
     pass
