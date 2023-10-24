@@ -4,7 +4,7 @@
 
 
 class Square:
-    """ Holds the size of a square with error handling 
+    """ Holds the size of a square with error handling
         Uses getters and setters"""
     def __init__(self, size=0):
         self.size = size
