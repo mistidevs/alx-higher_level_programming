@@ -1,6 +1,7 @@
 #include <Python.h>
 
 void print_python_bytes(PyObject *p);
+void print_python_list(PyObject *p);
 
 /**
 * print_python_list - printing a PyObject List
@@ -29,7 +30,7 @@ printf("[*] Allocated = %ld\n", ((PyListObject *)p)->allocated);
 for (i = 0; i < size; i++)
 {
 	item = *((PyObject **)(((PyListObject *)p)->ob_item) + i);
-	printf("Elemetn %ld: %s\n", i, item->ob_type->tp_name);
+	printf("Element %ld: %s\n", i, item->ob_type->tp_name);
 	if (PyBytes_Check(item))
 		print_python_bytes(item);
 }
@@ -45,9 +46,8 @@ for (i = 0; i < size; i++)
 
 void print_python_bytes(PyObject *p)
 {
-long int size, i;
-char *trying_str;
-unsigned char *bytes_str;
+long int size, i, len;
+char *str;
 
 printf("[.] bytes object info\n");
 
@@ -58,19 +58,13 @@ if (!PyBytes_Check(p))
 }
 
 size = ((PyVarObject *)p)->ob_size;
-trying_str = ((PyBytesObject *)p)->ob_sval;
-
+str = ((PyBytesObject *)p)->ob_sval;
+len = size + 1 > 10 ? 10 : size + 1;
 printf("  size: %ld\n", size);
-printf("  trying string: %s\n", trying_str);
+printf("  trying string: %s\n", str);
+printf("  first %lu bytes: ", len);
 
-if (size < 10)
-	printf("  first %ld bytes:", size + 1);
-else
-	printf("  first 10 bytes:");
-
-bytes_str = (unsigned char *)trying_str;
-for (i = 0; i < size && i < 10; i++)
-	printf(" %02hhx", bytes_str[i]);
-
+for (i = 0; i < len; i++)
+	printf(" %02hhx%s", str[i], i + 1 < len ? " " : "");
 printf("\n");
 }
