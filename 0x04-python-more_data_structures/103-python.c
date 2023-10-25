@@ -1,70 +1,50 @@
+#include <stdio.h>
+#include <stdlib.h>
 #include <Python.h>
 
-void print_python_bytes(PyObject *p);
-void print_python_list(PyObject *p);
-
 /**
-* print_python_list - printing a PyObject List
-* @p: pointer to PyObject
-*
-* Return: void
-*/
-
-void print_python_list(PyObject *p)
-{
-long int size, i;
-PyObject *item;
-
-printf("[*] Python list info\n");
-
-if (!PyList_Check(p))
-{
-	printf("  [ERROR] Invalid List Object\n");
-	return;
-}
-
-size = ((PyVarObject *)p)->ob_size;
-printf("[*] Size of Python List = %ld\n", size);
-printf("[*] Allocated = %ld\n", ((PyListObject *)p)->allocated);
-
-for (i = 0; i < size; i++)
-{
-	item = *((PyObject **)(((PyListObject *)p)->ob_item) + i);
-	printf("Element %ld: %s\n", i, item->ob_type->tp_name);
-	if (PyBytes_Check(item))
-		print_python_bytes(item);
-}
-}
-
-
-/**
-* print_python_bytes - printing Bytes object bytes
-* @p: pointer to PyObject
-*
-* Return: void
-*/
-
+ * print_python_bytes - prints info about python lists
+ * @p: address of pyobject struct
+ */
 void print_python_bytes(PyObject *p)
 {
-long int size, i, len;
-char *str;
+	size_t i, len, size;
+	char *str;
 
-printf("[.] bytes object info\n");
-
-if (!PyBytes_Check(p))
-{
-	printf("  [ERROR] Invalid Bytes Object\n");
-	return;
+	printf("[.] bytes object info\n");
+	if (strcmp(p->ob_type->tp_name, "bytes"))
+	{
+		printf("  [ERROR] Invalid Bytes Object\n");
+		return;
+	}
+	size = ((PyVarObject *)p)->ob_size;
+	str = ((PyBytesObject *)p)->ob_sval;
+	len =  size + 1 > 10 ? 10 : size + 1;
+	printf("  size: %lu\n", size);
+	printf("  trying string: %s\n", str);
+	printf("  first %lu bytes: ", len);
+	for (i = 0; i < len; i++)
+		printf("%02hhx%s", str[i], i + 1 < len ? " " : "");
+	printf("\n");
 }
 
-size = ((PyVarObject *)p)->ob_size;
-str = ((PyBytesObject *)p)->ob_sval;
-len = size + 1 > 10 ? 10 : size + 1;
-printf("  size: %ld\n", size);
-printf("  trying string: %s\n", str);
-printf("  first %lu bytes: ", len);
+/**
+ * print_python_list - prints info about python lists
+ * @p: address of pyobject struct
+ */
+void print_python_list(PyObject *p)
+{
+	int i;
 
-for (i = 0; i < len; i++)
-	printf(" %02hhx%s", str[i], i + 1 < len ? " " : "");
-printf("\n");
+	printf("[*] Python list info\n");
+	printf("[*] Size of the Python List = %lu\n", ((PyVarObject *)p)->ob_size);
+	printf("[*] Allocated = %lu\n", ((PyListObject *)p)->allocated);
+	for (i = 0; i < ((PyVarObject *)p)->ob_size; i++)
+	{
+		printf("Element %d: %s\n", i,
+			((PyListObject *)p)->ob_item[i]->ob_type->tp_name);
+		if (!strcmp(((PyListObject *)p)->ob_item[i]->ob_type->tp_name, "bytes"))
+			print_python_bytes(((PyListObject *)p)->ob_item[i]);
+
+	}
 }
