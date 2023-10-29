@@ -1,0 +1,30 @@
+Testing the edge cases for 4-print_square.py
+
+
+Importing the module
+	>>> print = __import__('4-print_square').print_square
+
+Where size is a postive integer
+	>>> print(4)
+	####
+	####
+	####
+	####
+
+Where size is zero
+	>>> print(0)
+
+Where size is a negative number:
+	>>> print(-1)
+	Traceback (most recent call last):
+	ValueError: size must be >= 0
+
+Where size is not an integer but a string
+	>>> print("big")
+	Traceback (most recent call last):
+	TypeError: size must be an integer
+
+Where size is a float and less than 0
+	>>> print(-2.5)
+	Traceback (most recent call last):
+	TypeError: size must be an integer
