@@ -1,93 +1,124 @@
-"""
 
-# Importing the module
->>> add_integer = __import__('0-add_integer').add_integer
+===========================
+How to Use 0-add_integer.py
+===========================
 
-# Case with integers only
->>> add_integer(3, 4)
-7
+This module defines an integer addition function ``add_integer(a, b=98)``.
 
-# Case with floats
->>> add_integer(3.0, 4.0)
-7
+Usage
+=====
 
-# Case with integer and float
->>> add_integer(3.0, 4)
-7
+``add_integer(...)``` returns the addition of its two arguments. For numbers,
+that value is equivalent to using the ``+`` operator.
 
-# Case where a is not a intgeer or float
->>> add_integer("woza", 4)
+::
+
+    >>> add_integer = __import__('0-add_integer').add_integer
+    >>> add_integer(2, 3)
+    5
+
+::
+
+    >>> add_integer(2, -3)
+    -1
+
+The function also works with floating-point values.
+
+::
+
+    >>> add_integer(2.0, 3.0)
+    5
+
+Note that floats are casted to ints before addition is performed.
+
+::
+
+    >>> add_integer(2.9, 0.2)
+    2
+
+::
+
+    >>> add_integer(-2.9, -0.2)
+    -2
+
+Floating and non-floating point values can be combined.
+
+::
+
+    >>> add_integer(2.3, -3)
+    -1
+
+The second argument is optional - by default, it is 98.
+
+::
+
+    >>> add_integer(2)
+    100
+
+Non-Numbers
+===========
+
+``add_integer()`` expects that both arguments are either integers or floats.
+If either argument is a non-integer and non-float, a TypeError is raised:
+
+::
+
+    >>> add_integer("hello", 3)
     Traceback (most recent call last):
     TypeError: a must be an integer
 
-# Case where b is not an integer or float
->>> add_integer(3, "woza")
+::
+
+    >>> add_integer(2, "hello")
     Traceback (most recent call last):
-      File "/usr/lib/python3.8/doctest.py", line 1336, in __run
-        exec(compile(example.source, filename, "single",
-      File "<doctest 0-add_integer.txt[5]>", line 1, in <module>
-        add_integer(3, "woza")
-      File "/root/alx-higher_level_programming/0x07-python-test_driven_development/0-add_integer.py", line 27, in add_integer
-        raise TypeError("b must be an integer")
     TypeError: b must be an integer
 
-# Case where both a and b are not integers or floats
->>> add_integer("woza", "wozi")
+::
+
+    >>> add_integer(None)
     Traceback (most recent call last):
-      File "/usr/lib/python3.8/doctest.py", line 1336, in __run
-        exec(compile(example.source, filename, "single",
-      File "<doctest 0-add_integer.txt[6]>", line 1, in <module>
-        add_integer("woza", "wozi")
-      File "/root/alx-higher_level_programming/0x07-python-test_driven_development/0-add_integer.py", line 25, in add_integer
-        raise TypeError("a must be an integer")
     TypeError: a must be an integer
 
-# Case where one is a negative number
->>> add_integer(-3, 4)
-1
+::
 
-# Case where a is a boolean
->>> add_integer(True, 3)
+    >>> add_integer(2.3, None)
     Traceback (most recent call last):
-      File "/usr/lib/python3.8/doctest.py", line 1336, in __run
-        exec(compile(example.source, filename, "single",
-      File "<doctest 0-add_integer.txt[8]>", line 1, in <module>
-        add_integer(True, 3)
-      File "/root/alx-higher_level_programming/0x07-python-test_driven_development/0-add_integer.py", line 20, in add_integer
-        raise TypeError("a must be an integer")
-    TypeError: a must be an integer
-
-# Case where b is a boolean
->>> add_integer(3, False)
-    Traceback (most recent call last):
-      File "/usr/lib/python3.8/doctest.py", line 1336, in __run
-        exec(compile(example.source, filename, "single",
-      File "<doctest 0-add_integer.txt[9]>", line 1, in <module>
-        add_integer(3, False)
-      File "/root/alx-higher_level_programming/0x07-python-test_driven_development/0-add_integer.py", line 22, in add_integer
-        raise TypeError("b must be an integer")
     TypeError: b must be an integer
 
-# Case where a is None
->>> add_integer(None, 6)
+If both arguments are non-integers and non-floats, a TypeError message is only
+printed for the first argument.
+
+::
+
+    >>> add_integer("hello", "there")
     Traceback (most recent call last):
-      File "/usr/lib/python3.8/doctest.py", line 1336, in __run
-        exec(compile(example.source, filename, "single",
-      File "<doctest 0-add_integer.txt[10]>", line 1, in <module>
-        add_integer(None, 6)
-      File "/root/alx-higher_level_programming/0x07-python-test_driven_development/0-add_integer.py", line 15, in add_integer
-        raise TypeError("a must be an integer")
     TypeError: a must be an integer
 
-# Case where b is None
->>> add_integer(5, None)
-    Traceback (most recent call last):
-      File "/usr/lib/python3.8/doctest.py", line 1336, in __run
-        exec(compile(example.source, filename, "single",
-      File "<doctest 0-add_integer.txt[11]>", line 1, in <module>
-        add_integer(5, None)
-      File "/root/alx-higher_level_programming/0x07-python-test_driven_development/0-add_integer.py", line 17, in add_integer
-        raise TypeError("b must be an integer")
-    TypeError: b must be an integer
+The function will fail if infinity is provided.
 
-"""
+::
+
+    >>> add_integer(float('inf'))
+    Traceback (most recent call last):
+    OverflowError: cannot convert float infinity to integer
+     
+
+::
+
+    >>> add_integer(2, float('inf'))
+    Traceback (most recent call last):
+    OverflowError: cannot convert float infinity to integer
+
+And again with NaN numbers.
+
+::
+
+    >>> add_integer(float('nan'))
+    Traceback (most recent call last):
+    ValueError: cannot convert float NaN to integer
+
+::
+
+    >>> add_integer(2, float('nan'))
+    Traceback (most recent call last):
+    ValueError: cannot convert float NaN to integer
