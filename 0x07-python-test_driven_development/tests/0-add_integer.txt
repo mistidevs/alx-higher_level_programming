@@ -18,12 +18,6 @@
 # Case where a is not a intgeer or float
 >>> add_integer("woza", 4)
     Traceback (most recent call last):
-      File "/usr/lib/python3.8/doctest.py", line 1336, in __run
-        exec(compile(example.source, filename, "single",
-      File "<doctest 0-add_integer.txt[4]>", line 1, in <module>
-        add_integer("woza", 4)
-      File "/root/alx-higher_level_programming/0x07-python-test_driven_development/0-add_integer.py", line 25, in add_integer
-        raise TypeError("a must be an integer")
     TypeError: a must be an integer
 
 # Case where b is not an integer or float
