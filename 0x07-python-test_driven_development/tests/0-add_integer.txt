@@ -17,16 +17,21 @@
 
 # Case where a is not a intgeer or float
 >>> add_integer("woza", 4)
-a must be an integer
+    Traceback (most recent call last):
+      ...
+    TypeError: a must be an integer
 
 # Case where b is not an integer or float
 >>> add_integer(3, "woza")
-b must be an integer
+    Traceback (most recent call last):
+      ...
+    TypeError: b must be an integer
 
 # Case where both a and b are not integers or floats
 >>> add_integer("woza", "wozi")
-a must be an integer
-b must be an integer
+    Traceback (most recent call last):
+      ...
+    TypeError: a must be an integer
 
 # Case where one is a negative number
 >>> add_integer(-3, 4)
@@ -34,18 +39,26 @@ b must be an integer
 
 # Case where a is a boolean
 >>> add_integer(True, 3)
-a is must be an integer
+    Traceback (most recent call last):
+      ...
+    TypeError: a must be an integer
 
 # Case where b is a boolean
 >>> add_integer(3, False)
-b must be an integer
+    Traceback (most recent call last):
+      ...
+    TypeError: b must be an integer
 
 # Case where a is None
 >>> add_integer(None, 6)
-a must be an integer
+    Traceback (most recent call last):
+      ...
+    TypeError: a must be an integer
 
 # Case where b is None
 >>> add_integer(5, None)
-b must be an integer
+    Traceback (most recent call last):
+      ...
+    TypeError: b must be an integer
 
 """
