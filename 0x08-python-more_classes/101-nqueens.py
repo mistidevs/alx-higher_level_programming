@@ -11,7 +11,6 @@ def solve_nqueens(n):
                 return False
         return True
 
-
     def place_queens(n, index, occupied_positions,
                      all_occupied_positions):
         if index == n:
@@ -24,7 +23,6 @@ def solve_nqueens(n):
                 place_queens(n, index + 1, occupied_positions,
                              all_occupied_positions)
                 occupied_positions.pop()
-
 
     all_occupied_positions = []
     place_queens(n, 0, [], all_occupied_positions)
