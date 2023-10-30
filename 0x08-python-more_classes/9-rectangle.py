@@ -102,7 +102,7 @@ class Rectangle:
 
     @classmethod
     def square(cls, size=0):
-	""" Returns a square instance """
+        """ Returns a square instance """
         if not isinstance(size, (int)):
             raise TypeError("size must be an integer")
         if size < 0:
