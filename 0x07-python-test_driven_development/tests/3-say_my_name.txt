@@ -1,0 +1,36 @@
+Function that tests say_my_name()
+
+Importing the modules
+	>>> say = __import__('3-say_my_name').say_my_name
+
+Case where first_name is not a string
+	>>> say(12, "Wangari")
+	Traceback (most recent call last):
+	TypeError: first_name must be a string
+
+Case where last_name is not a string
+	>>> say("Wanjiku", 13)
+	Traceback (most recent call last):
+	TypeError: last_name must be a string
+
+Case where first_name is not passed hence is None
+	>>> say(, "naomi")
+	TypeError: first_name must be a string
+
+Case where last_name is not passed
+	>> say("wesley")
+	My name is Bob 
+
+Case where first_name and last_name are strings
+	>>> say("John", "Huss")
+	My name is John Huss
+
+Case where first_name is None
+	>> say(None, "Tempe")
+	Traceback (most recent call last):
+	TypeError: first_name must be a string
+
+Case where last_name is None
+        >> say("Tempe", None)
+        Traceback (most recent call last):
+        TypeError: last_name must be a string
