@@ -13,10 +13,6 @@ Case where last_name is not a string
 	Traceback (most recent call last):
 	TypeError: last_name must be a string
 
-Case where first_name is not passed hence is None
-	>>> say(, "naomi")
-	TypeError: first_name must be a string
-
 Case where last_name is not passed
 	>> say("wesley")
 	My name is Bob 
