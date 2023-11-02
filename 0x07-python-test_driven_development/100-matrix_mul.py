@@ -41,10 +41,13 @@ def matrix_mul(m_a, m_b):
     if len(m_a[0]) != len(m_b):
         raise ValueError("m_a and m_b can't be multiplied")
 
-    result = [[0 for _ in range(len(m_b[0]))] for _ in range(len(m_a))]
-    for ind_a in range(len(m_a)):
-        for ind_b in range(len(m_b[0])):
-            for ind in range(len(m_b)):
-                result[ind_a][ind_b] += m_a[ind_a][ind] * m_b[ind][ind_b]
+    try:
+        result = [[0 for _ in range(len(m_b[0]))] for _ in range(len(m_a))]
+        for ind_a in range(len(m_a)):
+            for ind_b in range(len(m_b[0])):
+                for ind in range(len(m_b)):
+                    result[ind_a][ind_b] += m_a[ind_a][ind] * m_b[ind][ind_b]
 
+    except Exception as e:
+        print(e)
     return result
