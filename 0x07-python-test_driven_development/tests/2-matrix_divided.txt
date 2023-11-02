@@ -21,7 +21,7 @@ A matrix with floats
 
 A matrix with non-float or integer
 	>>> matrix = [
-	...	["woza", 6]
+	...	["woza", 6],
 	...	[8, "diggy"]
 	... ]
 	>>> print(mat(matrix, 3))
@@ -30,7 +30,7 @@ A matrix with non-float or integer
 
 A matrix with different size rows
 	>>> matrix = [
-	...	[2, 3, 5]
+	...	[2, 3, 5],
 	...	[6, 7]
 	... ]
 	>>> print(mat(matrix, 3))
@@ -39,7 +39,7 @@ A matrix with different size rows
 
 A case where div is not a float or integer
 	>>> matrix = [
-	...	[1, 2]
+	...	[1, 2],
 	...	[9, 8]
 	... ]
 	>>> print(mat(matrix, "oya"))
@@ -48,7 +48,7 @@ A case where div is not a float or integer
 
 A case where div is 0
 	>>> matrix = [
-	...	[1, 2]
+	...	[1, 2],
 	...	[3, 4]
 	... ]
 	>>> print(mat(matrix, 0))
