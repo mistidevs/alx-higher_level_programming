@@ -5,28 +5,24 @@
 
 def matrix_divided(matrix, div):
     """ Divides all elements in a matrix """
-    for row in matrix:
-        for elem in row:
-            if not isinstance(elem, (float, int)):
-                raise TypeError("matrix must be a matrix "
-                "(list of lists) of integers/floats")
-
-    row_len = len(matrix[0])
-    for row in matrix:
-        if len(row) != row_len:
-            raise TypeError("Each row of the matrix must have the same size")
-
-    if not isinstance(div, (float, int)):
+    errorMessage = "matrix must be a matrix (list of lists) of integers/floats"
+    if not matrix:
+        raise TypeError(errorMessage)
+    if not isinstance(matrix, list):
+        raise TypeError(errorMessage)
+    for lists in matrix:
+        if not isinstance(lists, list):
+            raise TypeError(errorMessage)
+        for item in lists:
+            if not isinstance(item, int) and not isinstance(item, float):
+                raise TypeError(errorMessage)
+    for lists in matrix:
+        if len(lists) == 0:
+            raise TypeError(errorMessage)
+    if not isinstance(div, int) and not isinstance(div, float):
         raise TypeError("div must be a number")
-
+    if not all(len(lists) == len(matrix[0]) for lists in matrix):
+        raise TypeError("Each row of the matrix must have the same size")
     if div == 0:
         raise ZeroDivisionError("division by zero")
-
-    mat_len = len(matrix)
-    divided = [[] for _ in range(mat_len)]
-
-    for row_index, row in enumerate(matrix):
-        for index, elem in enumerate(row):
-            divided[row_index].append(round(elem / div, 2))
-
-    return divided
+    return [[round(item / div, 2) for item in lists] for lists in matrix]
