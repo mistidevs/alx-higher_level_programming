@@ -29,8 +29,8 @@ class Rectangle:
     print_symbol = "#"
 
     def __init__(self, width=0, height=0):
-        self.height = height
         self.width = width
+        self.height = height
         type(self).number_of_instances += 1
 
     def __str__(self):
@@ -46,8 +46,6 @@ class Rectangle:
 
     def __del__(self):
         type(self).number_of_instances -= 1
-        if type(self).number_of_instances < 0:
-            type(self).number_of_instances = 0
         print("Bye rectangle...")
 
     @property
@@ -103,8 +101,4 @@ class Rectangle:
     @classmethod
     def square(cls, size=0):
         """ Returns a square instance """
-        if not isinstance(size, (int)):
-            raise TypeError("width must be an integer")
-        if size < 0:
-            raise ValueError("width must be >= 0")
         return Rectangle(size, size)
