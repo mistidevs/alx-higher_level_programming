@@ -13,4 +13,8 @@ try:
     print_square(-1)
 except Exception as e:
     print(e)
+try:
+    print_square()
+except Exception as e:
+    print(e)
 print("")

@@ -4,7 +4,9 @@
 Module that prints a square
 """
 
+
 def print_square(size):
+    """ Printing a square with # """
     if not isinstance(size, (int)):
         raise TypeError("size must be an integer")
     if size is None:
