@@ -1,10 +1,12 @@
 #!/usr/bin/python3
+import numpy as np
 
-""" Multiplies two matrices """
+
+""" Using NumPy to do matrix multiplication """
 
 
-def matrix_mul(m_a, m_b):
-    """ Manual matrix multiplication """
+def lazy_matrix_mul(m_a, m_b):
+    """ Matrix multiplication using NumPy """
     if not isinstance(m_a, (list)):
         raise TypeError("m_a must be a list")
     if not isinstance(m_b, (list)):
@@ -41,10 +43,4 @@ def matrix_mul(m_a, m_b):
     if len(m_a[0]) != len(m_b):
         raise ValueError("m_a and m_b can't be multiplied")
 
-    result = [[0 for _ in range(len(m_b[0]))] for _ in range(len(m_a))]
-    for ind_a in range(len(m_a)):
-        for ind_b in range(len(m_b[0])):
-            for ind in range(len(m_b)):
-                result[ind_a][ind_b] += m_a[ind_a][ind] * m_b[ind][ind_b]
-
-    return result
+    return np.matmul(np.array(m_a), np.array(m_b))
