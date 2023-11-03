@@ -19,10 +19,17 @@ def lazy_matrix_mul(m_a, m_b):
         if not isinstance(lists, list):
             raise TypeError("m_b must be a list of lists")
 
-    if m_a is [] or m_a is [[]]:
+    if m_a == []:
         raise ValueError("m_a can't be empty")
-    if m_b is [] or m_b is [[]]:
+    if m_b == []:
         raise ValueError("m_b can't be empty")
+
+    for row in m_a:
+        if row == []:
+            raise ValueError("m_a can't be empty")
+    for row in m_b:
+        if row == []:
+            raise ValueError("m_b can't be empty")
 
     for lists in m_a:
         for elem in lists:
