@@ -43,3 +43,18 @@ error input
 	>>> matrix_divided(diff_len, 3)
 	Traceback (most recent call last):
 	TypeError: Each row of the matrix must have the same size
+
+	>>> matrix_divided(matrixA, "wozi")
+	Traceback (most recent call last):
+	TypeError: div must be a number
+
+	>>> matrix_divided(matrixA)
+	Traceback (most recent call last):
+	TypeError: matrix_divided() missing 1 required positional argument: 'div'
+
+	>>> matrix_divided()
+	Traceback (most recent call last):
+	TypeError: matrix_divided() missing 2 required positional arguments: 'matrix' and 'div'
+
+	>>> matrix_divided(matrixB, float('inf'))
+	[[0.0, 0.0, 0.0], [0.0, 0.0, 0.0]]
