@@ -7,47 +7,21 @@ import numpy as np
 
 def lazy_matrix_mul(m_a, m_b):
     """ Matrix multiplication using NumPy """
-    if not isinstance(m_a, (list)):
-        raise TypeError("m_a must be a list")
-    if not isinstance(m_b, (list)):
-        raise TypeError("m_b must be a list")
+    try:
+        a = np.array(m_a)
+        b = np.array(m_b)
+    except ValueError:
+        raise ValueError("setting an array element with a sequence.")
 
-    for lists in m_a:
-        if not isinstance(lists, list):
-            raise TypeError("m_a must be a list of lists")
-    for lists in m_b:
-        if not isinstance(lists, list):
-            raise TypeError("m_b must be a list of lists")
+    if not (a.ndim == 2 and b.ndim == 2):
+        raise ValueError("Scalar operands are not allowed, use '*' instead")
+    if not (a.dtype in (int, float) and b.dtype in (int, float)):
+        raise ValueError("invalid data type for einsum")
+    if a.size == 0 or b.size == 0:
+        raise ValueError("""shapes {} and {} not aligned: \
+{} (dim 1) != {} (dim 0)""".format(a.shape, b.shape, a.shape[1], b.shape[0]))
+    if a.shape[1] != b.shape[0]:
+        raise ValueError("""shapes {} and {} not aligned: \
+{} (dim 1) != {} (dim 0)""".format(a.shape, b.shape, a.shape[1], b.shape[0]))
 
-    if m_a == []:
-        raise ValueError("m_a can't be empty")
-    if m_b == []:
-        raise ValueError("m_b can't be empty")
-
-    for row in m_a:
-        if row == []:
-            raise ValueError("m_a can't be empty")
-    for row in m_b:
-        if row == []:
-            raise ValueError("m_b can't be empty")
-
-    for lists in m_a:
-        for elem in lists:
-            if not isinstance(elem, (float, int)):
-                raise TypeError("m_a should contain only integers or floats")
-    for lists in m_b:
-        for elem in lists:
-            if not isinstance(elem, (float, int)):
-                raise TypeError("m_b should contain only integers or floats")
-
-    row_len_a = len(m_a[0])
-    row_len_b = len(m_a[0])
-    if not all(len(lists) == row_len_a for lists in m_a):
-        raise TypeError("each row of m_a must be of the same size")
-    if not all(len(lists) == row_len_b for lists in m_b):
-        raise TypeError("each row of m_b must be of the same size")
-
-    if len(m_a[0]) != len(m_b):
-        raise ValueError("m_a and m_b can't be multiplied")
-
-    return np.matmul(np.array(m_a), np.array(m_b))
+    return np.matmul(a, b)

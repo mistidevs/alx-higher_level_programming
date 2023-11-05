@@ -1,19 +1,20 @@
 Test suite for matrix multiplication with NumPy
 
 
->>> matrix_mul = __import__('100-matrix_mul').matrix_mul
+>>> matrix_mul = __import__('101-lazy_matrix_mul').lazy_matrix_mul
 
 	>>> matrixA = [[1, 2, 3], [3, 4, 5], [5, 6, 7]]
 	>>> matrixB = [[1, 2, 3], [4, 5, 6]]
 
 	>>> print(matrix_mul(matrixB, matrixA))
-	[[22, 28, 34], [49, 64, 79]]
+	[[22 28 34]
+	 [49 64 79]]
 	>>> print(matrix_mul("Holberton", matrixA))
 	Traceback (most recent call last):
-	TypeError: m_a must be a list
+	ValueError: Scalar operands are not allowed, use '*' instead
 	>>> print(matrix_mul(matrixB, "ALX"))
 	Traceback (most recent call last):
-	TypeError: m_b must be a list
+	ValueError: Scalar operands are not allowed, use '*' instead
 
 	>>> noneL = None
 	>>> empty_list = []
@@ -25,44 +26,40 @@ Test suite for matrix multiplication with NumPy
 
 	>>> matrix_mul(not_all_lists, matrixA)
 	Traceback (most recent call last):
-	TypeError: m_a must be a list of lists
+	ValueError: Scalar operands are not allowed, use '*' instead
 
 	>>> matrix_mul(matrixB, not_all_lists)
 	Traceback (most recent call last):
-	TypeError: m_b must be a list of lists
+	ValueError: Scalar operands are not allowed, use '*' instead
 
-	>>> matrix_mul(empty_list, matrixA)
+	>>> matrix_mul(empty_lists, [[5, 6], [7, 8]])
 	Traceback (most recent call last):
-	ValueError: m_a can't be empty
+	ValueError: shapes (1, 0) and (2, 2) not aligned: 0 (dim 1) != 2 (dim 0)
 
-	>>> matrix_mul(matrixB, empty_list)
+	>>> matrix_mul([[5, 6], [7, 8]], empty_lists)
         Traceback (most recent call last):
-        ValueError: m_b can't be empty
-
-	>>> matrix_mul(empty_lists, matrixA)
-	Traceback (most recent call last):
-	ValueError: m_a can't be empty
-
-	>>> matrix_mul(matrixB, empty_lists)
-	Traceback (most recent call last):
-	ValueError: m_b can't be empty
+        ValueError: shapes (2, 2) and (1, 0) not aligned: 2 (dim 1) != 1 (dim 0)
 
 	>>> matrix_mul(not_all_num, matrixA)
 	Traceback (most recent call last):
-	TypeError: m_a should contain only integers or floats
+	ValueError: invalid data type for einsum
 
 	>>> matrix_mul(matrixB, not_all_num)
 	Traceback (most recent call last):
-	TypeError: m_b should contain only integers or floats
+	ValueError: invalid data type for einsum
 
 	>>> matrix_mul(diff_len, matrixA)
 	Traceback (most recent call last):
-	TypeError: each row of m_a must be of the same size
+	ValueError: Scalar operands are not allowed, use '*' instead
 
 	>>> matrix_mul(matrixB, diff_len)
 	Traceback (most recent call last):
-	TypeError: each row of m_b must be of the same size
+	ValueError: Scalar operands are not allowed, use '*' instead
 
-	>>> matrix_mul(matrixA, matrixB)
+	>>> matrix_mul(matrixA)
 	Traceback (most recent call last):
-	ValueError: m_a and m_b can't be multiplied
+	TypeError: lazy_matrix_mul() missing 1 required positional argument: 'm_b'
+
+	>>> matrix_mul()
+	Traceback (most recent call last):
+	TypeError: lazy_matrix_mul() missing 2 required positional arguments: 'm_a' and 'm_b'
