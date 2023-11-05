@@ -39,7 +39,7 @@ def matrix_mul(m_a, m_b):
                 raise TypeError("m_b should contain only integers or floats")
 
     row_len_a = len(m_a[0])
-    row_len_b = len(m_a[0])
+    row_len_b = len(m_b[0])
     if not all(len(lists) == row_len_a for lists in m_a):
         raise TypeError("each row of m_a must be of the same size")
     if not all(len(lists) == row_len_b for lists in m_b):
