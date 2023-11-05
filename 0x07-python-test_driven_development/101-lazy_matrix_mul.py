@@ -6,7 +6,10 @@ import numpy as np
 
 
 def lazy_matrix_mul(m_a, m_b):
-    """ Matrix multiplication using NumPy """
+    """
+    Matrix multiplication using NumPy
+    Yap it is what is key
+    """
     try:
         a = np.array(m_a)
         b = np.array(m_b)
@@ -19,11 +22,11 @@ def lazy_matrix_mul(m_a, m_b):
         raise ValueError("invalid data type for einsum")
     if a.size == 0 or b.size == 0:
         raise ValueError("""shapes ({},{}) and ({},{}) not aligned: \
-{} (dim 1) != {} (dim 0)""".format(a.shape[0], a.shape[1], \
-b.shape[0], b.shape[1], a.shape[1], b.shape[0]))
+{} (dim 1) != {} (dim 0)""".format(a.shape[0], a.shape[1], b.shape[0],
+                                   b.shape[1], a.shape[1], b.shape[0]))
     if a.shape[1] != b.shape[0]:
         raise ValueError("""shapes ({},{}) and ({},{}) not aligned: \
-{} (dim 1) != {} (dim 0)""".format(a.shape[0], a.shape[1], b.shape[0], \
-b.shape[1], a.shape[1], b.shape[0]))
+{} (dim 1) != {} (dim 0)""".format(a.shape[0], a.shape[1], b.shape[0],
+                                   b.shape[1], a.shape[1], b.shape[0]))
 
     return np.matmul(a, b)
