@@ -1,34 +1,44 @@
 #!/usr/bin/python3
-""" Log parser for Server Logs """
+"""101-stats.py"""
+
+
 import sys
 
-total_size = 0
-status_codes = {200: 0, 301: 0, 400: 0, 401: 0, 403: 0,
-                404: 0, 405: 0, 500: 0}
-line_count = 0
+totalFileSize = 0
+statusCodeCounts = {
+    200: 0,
+    301: 0,
+    400: 0,
+    401: 0,
+    403: 0,
+    404: 0,
+    405: 0,
+    500: 0,
+}
+lineCount = 0
 
 try:
     for line in sys.stdin:
         parts = line.split()
         if len(parts) >= 9:
-            status_code = int(parts[-2])
-            file_size = int(parts[-1])
-            total_size += file_size
+            statusCode = int(parts[-2])
+            fileSize = int(parts[-1])
 
-        status_codes[status_code] += 1
-        line_count += 1
+            totalFileSize += fileSize
+            statusCodeCounts[statusCode] += 1
+            lineCount += 1
 
-        if line_count % 10:
-            print("File size: {}".format(total_size))
-            for code in sorted(status_codes.keys()):
-                if status_codes[code] > 0:
-                    print("{}: {}".format(code, status_codes[code]))
+        if lineCount % 10 == 0:
+            print("File size: {}".format(totalFileSize))
+            for code in sorted(statusCodeCounts.keys()):
+                if statusCodeCounts[code] > 0:
+                    print("{}: {}".format(code, statusCodeCounts[code]))
 
 except KeyboardInterrupt:
     pass
 
 finally:
-    print("File size: {}".format(total_size))
-    for code in sorted(status_codes.keys()):
-        if status_codes[code] > 0:
-            print("{}: {}".format(code, status_codes[code]))
+    print("File size: {}".format(totalFileSize))
+    for code in sorted(statusCodeCounts.keys()):
+        if statusCodeCounts[code] > 0:
+            print("{}: {}".format(code, statusCodeCounts[code]))
