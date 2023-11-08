@@ -21,9 +21,9 @@ try:
 
         if line_count % 10:
             print("File size: {}".format(total_size))
-            for code in sorted(status_codes[code] > 0):
+            for code in sorted(status_codes.keys()):
                 if status_codes[code] > 0:
-                    print ("{}: {}".format(code, status_codes[code]))
+                    print("{}: {}".format(code, status_codes[code]))
 
 except KeyboardInterrupt:
     pass
