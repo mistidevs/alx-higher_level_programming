@@ -5,7 +5,7 @@
 def pascal_triangle(n):
     """ Printing the pascals triangle with iterations """
     if n <= 0:
-        return [[]]
+        return []
 
     pascals = [[] for _ in range(n)]
     if n >= 1:
