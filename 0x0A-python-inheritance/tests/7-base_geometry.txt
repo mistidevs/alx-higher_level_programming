@@ -11,6 +11,11 @@ Case where the value is not an integer
 	Traceback (most recent call last):
 	TypeError: name must be an integer
 
+Case where value is None:
+	>>> bg.integer_validator("age", None)
+	Traceback (most recent call last):
+	TypeError: age must be an integer
+
 Case where the value is equal to 0:
 	>>> bg.integer_validator("age", 0)
 	Traceback (most recent call last):
