@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 "Base class that is a subclass of object"
 import json
+import csv
 
 
 class Base:
@@ -54,5 +55,40 @@ class Base:
                 json_string = f.read()
                 list_dicts = cls.from_json_string(json_string)
                 return [cls.create(**dicti) for dicti in list_dicts]
+        except FileNotFoundError:
+            return []
+
+    @classmethod
+    def save_to_file_csv(cls, list_objs):
+        f_name = cls.__name__ + '.csv'
+        with open(f_name, mode="w", newline="",
+                  encoding="utf-8") as cs_file:
+            if list_objs is not None:
+                writer = csv.writer(cs_file)
+                if cls.__name__ == "Rectangle":
+                    for obj in list_objs:
+                        writer.writerow([obj.id, obj.width, obj.height,
+                                         obj.x, obj.y])
+                elif cls.__name__ == "Square":
+                    for obj in list_objs:
+                        writer.writerow([obj.id, obj.size,
+                                         obj.x, obj.y])
+
+    @classmethod
+    def load_from_file_csv(cls):
+        f_name = cls.__name__ + '.csv'
+        try:
+            with open(f_name, mode="r", encoding="utf-8") as cs_file:
+                reader = csv.reader(cs_file)
+                list_objs = []
+                for row in reader:
+                    if cls.__name__ == "Rectangle":
+                        dictionary = {"id": int(row[0]), "width": int(row[1]),
+                                      "height": int(row[2]), "x": int(row[3]), "y": int(row[4])}
+                    elif cls.__name__ == "Square":
+                        dictionary = {"id": int(row[0]), "size": int (row[1]),
+                                      "x": int(row[2]), "y": int(row[3])}
+                    list_objs.append(cls.create(**dictionary))
+                return list_objs
         except FileNotFoundError:
             return []
