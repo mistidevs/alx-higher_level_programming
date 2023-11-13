@@ -2,6 +2,7 @@
 "Base class that is a subclass of object"
 import json
 import csv
+import turtle
 
 
 class Base:
@@ -92,3 +93,32 @@ class Base:
                 return list_objs
         except FileNotFoundError:
             return []
+
+    @staticmethod
+    def draw(list_rectangles, list_squares):
+        window = turtle.Screen()
+        window.bgcolor("white")
+        t = turtle.Turtle()
+
+        for rect in list_rectangles:
+            t.penup()
+            t.goto(rect.x, rect.y)
+            t.pendown()
+            t.color("blue")
+            for _ in range(2):
+                t.forward(rect.width)
+                t.right(90)
+                t.forward(rect.height)
+                t.right(90)
+
+        for square in list_squares:
+            t.penup()
+            t.goto(square.x, square.y)
+            t.pendown()
+            t.color("green")
+            for _ in range(4):
+                t.forward(square.size)
+                t.right(90)
+
+        window.exitonclick()
+                
