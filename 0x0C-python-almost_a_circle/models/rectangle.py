@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"Class rectangle that inherits from Base"
+""" Class rectangle that inherits from Base """
 from models.base import Base
 
 
