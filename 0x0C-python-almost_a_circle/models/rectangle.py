@@ -76,14 +76,27 @@ class Rectangle(Base):
             print(" " * self.__x, end="")
             print("#" * self.__width)
 
-    def update(self, *args):
-        if len(args) >= 1:
-            super().__init__(args[0])
-        if len(args) >= 2:
-            self.width = args[1]
-        if len(args) >= 3:
-            self.height = args[2]
-        if len(args) >= 4:
-            self.x = args[3]
-        if len(args) >= 5:
-            self.y = args[4]
+    def update(self, *args, **kwargs):
+        if len(args) == 0:
+            for key in kwargs:
+                if key == 'x':
+                    self.x = kwargs['x']
+                if key == 'y':
+                    self.y = kwargs['y']
+                if key == 'id':
+                    super().__init__(kwargs['id'])
+                if key == 'width':
+                    self.width = kwargs['width']
+                if key == 'height':
+                    self.height = kwargs['height']
+        else:
+            if len(args) >= 1:
+                super().__init__(args[0])
+            if len(args) >= 2:
+                self.width = args[1]
+            if len(args) >= 3:
+                self.height = args[2]
+            if len(args) >= 4:
+                self.x = args[3]
+            if len(args) >= 5:
+                self.y = args[4]
