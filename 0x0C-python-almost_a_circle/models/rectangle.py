@@ -1,11 +1,12 @@
 #!/usr/bin/python3
 "Class rectangle that inherits from Base"
-Base = __import__('./models/base').Base
+from models.base import Base
 
 
 class Rectangle(Base):
     "Rectangle class inheriting from Base"
     def __init__(self, width, height, x=0, y=0, id=None):
+        "Constructor initialiser"
         super().__init__(id)
         self.width = width
         self.height = height
@@ -13,15 +14,18 @@ class Rectangle(Base):
         self.y = y
 
     def __str__(self):
+        "String function that returns Rectangle"
         return (f"[Rectangle] ({self.id}) {self.__x}/{self.__y} - \
 {self.__width}/{self.__height}")
 
     @property
     def width(self):
+        "Return the width of self"
         return self.__width
 
     @width.setter
     def width(self, value):
+        "Sets the value of width"
         if type(value) is not int:
             raise TypeError("width must be an integer")
         if value <= 0:
@@ -30,10 +34,12 @@ class Rectangle(Base):
 
     @property
     def height(self):
+        "Return the height of self"
         return self.__height
 
     @height.setter
     def height(self, value):
+        "Set the height of self"
         if type(value) is not int:
             raise TypeError("height must be an integer")
         if value <= 0:
@@ -42,10 +48,12 @@ class Rectangle(Base):
 
     @property
     def x(self):
+        "Return the value of x"
         return self.__x
 
     @x.setter
     def x(self, value):
+        "Set the value of x"
         if type(value) is not int:
             raise TypeError("x must be an integer")
         if value < 0:
@@ -54,10 +62,12 @@ class Rectangle(Base):
 
     @property
     def y(self):
+        "Return the value of y"
         return self.__y
 
     @y.setter
     def y(self, value):
+        "Set the value of y"
         if type(value) is not int:
             raise TypeError("y must be an integer")
         if value < 0:
@@ -65,15 +75,18 @@ class Rectangle(Base):
         self.__y = value
 
     def area(self):
+        "Return the area of the Rectangle"
         return self.__width * self.__height
 
     def display(self):
+        "Display Rectangle using #"
         print("\n" * self.__y, end="")
         for i in range(self.__height):
             print(" " * self.__x, end="")
             print("#" * self.__width)
 
     def update(self, *args, **kwargs):
+        "Updating the variables in Rectangle"
         if len(args) == 0:
             for key in kwargs:
                 if key == 'x':
@@ -99,6 +112,7 @@ class Rectangle(Base):
                 self.y = args[4]
 
     def to_dictionary(self):
+        "Returning Rectangle in dictionary form"
         return {
             'x': self.x,
             'y': self.y,
