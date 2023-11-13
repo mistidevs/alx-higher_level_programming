@@ -30,7 +30,7 @@ class Base:
             list_dicts = [obj.to_dictionary() for obj in list_objs]
 
         with open(cls.__name__ + '.json', mode="w", encoding="utf-8") as f:
-                  f.write(cls.to_json_string(list_dicts))
+            f.write(cls.to_json_string(list_dicts))
 
     @staticmethod
     def from_json_string(json_string):
@@ -85,9 +85,10 @@ class Base:
                 for row in reader:
                     if cls.__name__ == "Rectangle":
                         dictionary = {"id": int(row[0]), "width": int(row[1]),
-                                      "height": int(row[2]), "x": int(row[3]), "y": int(row[4])}
+                                      "height": int(row[2]), "x": int(row[3]),
+                                      "y": int(row[4])}
                     elif cls.__name__ == "Square":
-                        dictionary = {"id": int(row[0]), "size": int (row[1]),
+                        dictionary = {"id": int(row[0]), "size": int(row[1]),
                                       "x": int(row[2]), "y": int(row[3])}
                     list_objs.append(cls.create(**dictionary))
                 return list_objs
@@ -121,4 +122,3 @@ class Base:
                 t.right(90)
 
         window.exitonclick()
-                
