@@ -75,7 +75,7 @@ class TestSquare(unittest.TestCase):
         print(s17)
         sys.stdout = sys.__stdout__
         self.assertEqual(buf.getvalue(),
-                         '[Square] (35) 0/0 - 5\n')
+                         '[Square] (36) 0/0 - 5\n')
         buf = io.StringIO()
         sys.stdout = buf
         s17.update(10)

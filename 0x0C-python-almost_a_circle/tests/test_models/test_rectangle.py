@@ -80,7 +80,7 @@ class TestRectangle(unittest.TestCase):
         print(r20)
         sys.stdout = sys.__stdout__
         self.assertEqual(buf.getvalue(),
-                         '[Rectangle] (19) 10/10 - 10/10\n')
+                         '[Rectangle] (20) 10/10 - 10/10\n')
         buf = io.StringIO()
         sys.stdout = buf
         r20.update(89)
@@ -125,14 +125,14 @@ class TestRectangle(unittest.TestCase):
         print(r21)
         sys.stdout = sys.__stdout__
         self.assertEqual(buf.getvalue(),
-                         '[Rectangle] (20) 10/10 - 10/1\n')
+                         '[Rectangle] (21) 10/10 - 10/1\n')
         buf = io.StringIO()
         sys.stdout = buf
         r21.update(width=1, x=2)
         print(r21)
         sys.stdout = sys.__stdout__
         self.assertEqual(buf.getvalue(),
-                         '[Rectangle] (20) 2/10 - 1/1\n')
+                         '[Rectangle] (21) 2/10 - 1/1\n')
         buf = io.StringIO()
         sys.stdout = buf
         r21.update(y=1, width=2, x=3, id=89)
@@ -147,4 +147,8 @@ class TestRectangle(unittest.TestCase):
         sys.stdout = sys.__stdout__
         self.assertEqual(buf.getvalue(),
                          '[Rectangle] (89) 1/3 - 4/2\n')
-            
+
+    def test_to_dictionary(self):
+        r22 = Rectangle(10, 2, 1, 9)
+        rect_dict = {'x': 1, 'y': 9, 'id': 19, 'height': 2, 'width': 10}
+        self.assertEqual(r22.to_dictionary(), rect_dict)
