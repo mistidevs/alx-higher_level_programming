@@ -61,3 +61,12 @@ class TestRectangle(unittest.TestCase):
         r18.display()
         sys.stdout = sys.__stdout__
         self.assertEqual(buf.getvalue(), '\n\n  ##\n  ##\n  ##\n')
+
+    def test_str(self):
+        r19 = Rectangle(4, 6, 2, 1, 12)
+        rect_string = '[Rectangle] (12) 2/1 - 4/6\n'
+        buf = io.StringIO()
+        sys.stdout = buf
+        print(r19)
+        sys.stdout = sys.__stdout__
+        self.assertEqual(buf.getvalue(), rect_string)

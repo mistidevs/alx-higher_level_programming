@@ -56,3 +56,12 @@ class TestSquare(unittest.TestCase):
         s15.display()
         sys.stdout = sys.__stdout__
         self.assertEqual(buf.getvalue(), '\n\n\n ###\n ###\n ###\n')
+
+    def test_str(self):
+        s16 = Square(3, 1, 3, 20)
+        square_string = '[Square] (20) 1/3 - 3\n'
+        buf = io.StringIO()
+        sys.stdout = buf
+        print(s16)
+        sys.stdout = sys.__stdout__
+        self.assertEqual(buf.getvalue(), square_string)
