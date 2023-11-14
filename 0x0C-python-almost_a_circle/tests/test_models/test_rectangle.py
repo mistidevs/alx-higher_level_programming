@@ -8,7 +8,7 @@ class TestRectangle(unittest.TestCase):
         r1 = Rectangle(1, 2)
         r2 = Rectangle(1, 2, 3)
         r3 = Rectangle(1, 2, 3, 4)
-        r4 = Rectangle(1, 2, 3, 4, 90)
+        r4 = Rectangle(1, 2, 3, 4, 5)
 
     def test_invalid_rectangles(self):
         with self.assertRaises(TypeError):
