@@ -71,3 +71,48 @@ class TestRectangle(unittest.TestCase):
         print(r19)
         sys.stdout = sys.__stdout__
         self.assertEqual(buf.getvalue(), rect_string)
+
+    def test_update_args(self):
+        r20 = Rectangle(10, 10, 10, 10)
+        buf = io.StringIO()
+        sys.stdout = buf
+        r20.update()
+        print(r20)
+        sys.stdout = sys.__stdout__
+        self.assertEqual(buf.getvalue(),
+                         '[Rectangle] (19) 10/10 - 10/10\n')
+        buf = io.StringIO()
+        sys.stdout = buf
+        r20.update(89)
+        print(r20)
+        sys.stdout = sys.__stdout__
+        self.assertEqual(buf.getvalue(),
+                         '[Rectangle] (89) 10/10 - 10/10\n')
+        buf = io.StringIO()
+        sys.stdout = buf
+        r20.update(89, 2)
+        print(r20)
+        sys.stdout = sys.__stdout__
+        self.assertEqual(buf.getvalue(),
+                         '[Rectangle] (89) 10/10 - 2/10\n')
+        buf = io.StringIO()
+        sys.stdout = buf
+        r20.update(89, 2, 3)
+        print(r20)
+        sys.stdout = sys.__stdout__
+        self.assertEqual(buf.getvalue(),
+                         '[Rectangle] (89) 10/10 - 2/3\n')
+        buf = io.StringIO()
+        sys.stdout = buf
+        r20.update(89, 2, 3, 4)
+        print(r20)
+        sys.stdout = sys.__stdout__
+        self.assertEqual(buf.getvalue(),
+                         '[Rectangle] (89) 4/10 - 2/3\n')
+        buf = io.StringIO()
+        sys.stdout = buf
+        r20.update(89, 2, 3, 4, 5)
+        print(r20)
+        sys.stdout = sys.__stdout__
+        self.assertEqual(buf.getvalue(),
+                         '[Rectangle] (89) 4/5 - 2/3\n')
