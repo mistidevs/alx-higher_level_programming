@@ -1,3 +1,5 @@
+import io
+import sys
 import unittest
 from models.base import Base
 from models.rectangle import Rectangle
@@ -31,3 +33,31 @@ class TestRectangle(unittest.TestCase):
             r13 = Rectangle(1, 2, -1)
         with self.assertRaises(ValueError):
             r14 = Rectangle(1, 2, 3, -1)
+
+    def test_area(self):
+        r15 = Rectangle(3, 5)
+        self.assertEqual(r15.area(), 15)
+
+    def test_display(self):
+        r16 = Rectangle(2, 2)
+        buf = io.StringIO()
+        sys.stdout = buf
+        r16.display()
+        sys.stdout = sys.__stdout__
+        self.assertEqual(buf.getvalue(), '##\n##\n')
+
+    def test_display_x(self):
+        r17 = Rectangle(3, 2, 1)
+        buf = io.StringIO()
+        sys.stdout = buf
+        r17.display()
+        sys.stdout = sys.__stdout__
+        self.assertEqual(buf.getvalue(), ' ###\n ###\n')
+
+    def test_display_x_y(self):
+        r18 = Rectangle(2, 3, 2, 2)
+        buf = io.StringIO()
+        sys.stdout = buf
+        r18.display()
+        sys.stdout = sys.__stdout__
+        self.assertEqual(buf.getvalue(), '\n\n  ##\n  ##\n  ##\n')

@@ -4,7 +4,7 @@ from models.rectangle import Rectangle
 from models.square import Square
 
 
-class TestSquare(unittest.TestsCase):
+class TestSquare(unittest.TestCase):
     def test_valid_squares(self):
         s1 = Square(2)
         s2 = Square(2, 7)
