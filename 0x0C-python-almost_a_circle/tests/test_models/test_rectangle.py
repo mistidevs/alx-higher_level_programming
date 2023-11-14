@@ -116,3 +116,35 @@ class TestRectangle(unittest.TestCase):
         sys.stdout = sys.__stdout__
         self.assertEqual(buf.getvalue(),
                          '[Rectangle] (89) 4/5 - 2/3\n')
+
+    def test_update_kwargs(self):
+        r21 = Rectangle(10, 10, 10, 10)
+        buf = io.StringIO()
+        sys.stdout = buf
+        r21.update(height=1)
+        print(r21)
+        sys.stdout = sys.__stdout__
+        self.assertEqual(buf.getvalue(),
+                         '[Rectangle] (20) 10/10 - 10/1\n')
+        buf = io.StringIO()
+        sys.stdout = buf
+        r21.update(width=1, x=2)
+        print(r21)
+        sys.stdout = sys.__stdout__
+        self.assertEqual(buf.getvalue(),
+                         '[Rectangle] (20) 2/10 - 1/1\n')
+        buf = io.StringIO()
+        sys.stdout = buf
+        r21.update(y=1, width=2, x=3, id=89)
+        print(r21)
+        sys.stdout = sys.__stdout__
+        self.assertEqual(buf.getvalue(),
+                         '[Rectangle] (89) 3/1 - 2/1\n')
+        buf = io.StringIO()
+        sys.stdout = buf
+        r21.update(x=1, height=2, y=3, width=4)
+        print(r21)
+        sys.stdout = sys.__stdout__
+        self.assertEqual(buf.getvalue(),
+                         '[Rectangle] (89) 1/3 - 4/2\n')
+            
