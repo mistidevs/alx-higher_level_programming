@@ -11,6 +11,7 @@ class TestRectangle(unittest.TestCase):
         r2 = Rectangle(1, 2, 3)
         r3 = Rectangle(1, 2, 3, 4)
         r4 = Rectangle(1, 2, 3, 4, 5)
+        self.assertEqual(r4.id, 5)
 
     def test_invalid_rectangles(self):
         with self.assertRaises(TypeError):
