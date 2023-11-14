@@ -12,6 +12,7 @@ class TestSquare(unittest.TestCase):
         s2 = Square(2, 7)
         s3 = Square(3, 7, 8)
         s4 = Square(3, 7, 8, 9)
+        self.assertEqual(s4.id, 9)
 
     def test_invalid_squares(self):
         with self.assertRaises(TypeError):
