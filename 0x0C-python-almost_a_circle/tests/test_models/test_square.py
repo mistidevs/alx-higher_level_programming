@@ -29,7 +29,7 @@ class TestSquare(unittest.TestCase):
             s10 = Square(4, 5, "8")
         with self.assertRaises(ValueError):
             s11 = Square(4, 5, -2)
-        
+
     def test_area(self):
         s12 = Square(3)
         self.assertEqual(s12.area(), 9)
@@ -66,3 +66,41 @@ class TestSquare(unittest.TestCase):
         print(s16)
         sys.stdout = sys.__stdout__
         self.assertEqual(buf.getvalue(), square_string)
+
+    def test_update_args(self):
+        s17 = Square(5)
+        buf = io.StringIO()
+        sys.stdout = buf
+        s17.update()
+        print(s17)
+        sys.stdout = sys.__stdout__
+        self.assertEqual(buf.getvalue(),
+                         '[Square] (34) 0/0 - 5\n')
+        buf = io.StringIO()
+        sys.stdout = buf
+        s17.update(10)
+        print(s17)
+        sys.stdout = sys.__stdout__
+        self.assertEqual(buf.getvalue(),
+                         '[Square] (10) 0/0 - 5\n')
+        buf = io.StringIO()
+        sys.stdout = buf
+        s17.update(1, 2)
+        print(s17)
+        sys.stdout = sys.__stdout__
+        self.assertEqual(buf.getvalue(),
+                         '[Square] (1) 0/0 - 2\n')
+        buf = io.StringIO()
+        sys.stdout = buf
+        s17.update(1, 2, 3)
+        print(s17)
+        sys.stdout = sys.__stdout__
+        self.assertEqual(buf.getvalue(),
+                         '[Square] (1) 3/0 - 2\n')
+        buf = io.StringIO()
+        sys.stdout = buf
+        s17.update(1, 2, 3, 4)
+        print(s17)
+        sys.stdout = sys.__stdout__
+        self.assertEqual(buf.getvalue(),
+                         '[Square] (1) 3/4 - 2\n')
