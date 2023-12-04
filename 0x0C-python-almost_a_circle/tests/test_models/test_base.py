@@ -58,6 +58,16 @@ class TestBase(unittest.TestCase):
         empty_list = Rectangle.from_json_string(Empty_string)
         self.assertEqual(empty_list, [])
 
-
+    def test_create(self):
+        r3 = Rectangle.create(**{'id': 501})
+        r4 = Rectangle.create(**{'id': 502, 'width': 1})
+        r5 = Rectangle.create(**{'id': 503, 'width': 1, 'height': 2})
+        r6 = Rectangle.create(**{'id': 504, 'width': 1, 'height': 2, 'x': 3})
+        r7 = Rectangle.create(**{'id': 505, 'width': 1, 'height': 2, 'x': 3, 'y': 4})
+        s1 = Square.create(**{'id': 201})
+        s2 = Square.create(**{'id': 202, 'size': 1})
+        s3 = Square.create(**{'id': 204, 'size': 1, 'x': 3})
+        s4 = Square.create(**{'id': 205, 'size': 1, 'x': 3, 'y': 4})
+        
 if __name__ == '__main__':
     unittest.main()
