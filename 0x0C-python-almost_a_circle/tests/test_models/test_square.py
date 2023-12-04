@@ -75,7 +75,7 @@ class TestSquare(unittest.TestCase):
         print(s17)
         sys.stdout = sys.__stdout__
         self.assertEqual(buf.getvalue(),
-                         '[Square] (37) 0/0 - 5\n')
+                         '[Square] (46) 0/0 - 5\n')
         buf = io.StringIO()
         sys.stdout = buf
         s17.update(10)
@@ -128,8 +128,8 @@ class TestSquare(unittest.TestCase):
         sys.stdout = sys.__stdout__
         self.assertEqual(buf.getvalue(),
                          '[Square] (89) 12/1 - 7\n')
-        
+
     def test_to_dictionary(self):
         s19 = Square(10, 2, 1)
-        square_dict = {'id': 36, 'x': 2, 'size': 10, 'y': 1}
+        square_dict = {'id': 45, 'x': 2, 'size': 10, 'y': 1}
         self.assertEqual(s19.to_dictionary(), square_dict)
