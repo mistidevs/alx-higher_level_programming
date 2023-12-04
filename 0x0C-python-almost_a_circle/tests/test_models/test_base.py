@@ -73,7 +73,14 @@ class TestBase(unittest.TestCase):
         s4 = Square.create(**{'id': 205, 'size': 1, 'x': 3, 'y': 4})
 
     def test_save_to_file(self):
+        Rectangle.save_to_file(None)
+        file_contents = Rectangle.load_from_file()
+        self.assertEqual(file_contents, [])
         Square.save_to_file(None)
+        file_contents = Square.load_from_file()
+        self.assertEqual(file_contents, [])
+        os.remove('Rectangle.json')
+        os.remove('Square.json')
         Rectangle.save_to_file([])
         file_contents = Rectangle.load_from_file()
         self.assertEqual(file_contents, [])

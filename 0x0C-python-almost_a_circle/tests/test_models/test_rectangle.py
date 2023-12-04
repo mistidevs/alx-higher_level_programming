@@ -8,6 +8,7 @@ from models.rectangle import Rectangle
 class TestRectangle(unittest.TestCase):
     def test_valid_rectangles(self):
         r1 = Rectangle(1, 2)
+        self.assertEqual(r1.width, 1)
         r2 = Rectangle(1, 2, 3)
         r3 = Rectangle(1, 2, 3, 4)
         r4 = Rectangle(1, 2, 3, 4, 5)
