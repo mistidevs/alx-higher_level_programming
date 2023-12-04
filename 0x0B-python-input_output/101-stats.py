@@ -21,8 +21,11 @@ try:
     for line in sys.stdin:
         parts = line.split()
         if len(parts) >= 9:
-            statusCode = int(parts[-2])
-            fileSize = int(parts[-1])
+            try:
+                statusCode = int(parts[-2])
+                fileSize = int(parts[-1])
+            except ValueError:
+                pass
 
             totalFileSize += fileSize
             statusCodeCounts[statusCode] += 1
