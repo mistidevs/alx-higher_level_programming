@@ -1,13 +1,16 @@
+import io
+import sys
 import unittest
 from models.base import Base
 from models.rectangle import Rectangle
 from models.square import Square
+import os
 
 
 class TestBase(unittest.TestCase):
     def test_init(self):
         b1 = Base()
-        self.assertEqual(b1.id, 1)
+        self.assertEqual(b1.id, 10)
         b2 = Base(89)
         self.assertEqual(b2.id, 89)
 
@@ -45,9 +48,8 @@ class TestBase(unittest.TestCase):
 
     def test_from_json_string(self):
         list_input = [
-        {'id': 89, 'width': 10, 'height': 4}, 
-        {'id': 7, 'width': 1, 'height': 7}
-    ]
+            {'id': 89, 'width': 10, 'height': 4},
+            {'id': 7, 'width': 1, 'height': 7}]
         json_list_input = Rectangle.to_json_string(list_input)
         list_output = Rectangle.from_json_string(json_list_input)
         self.assertEqual(list_output, list_input)
@@ -63,11 +65,44 @@ class TestBase(unittest.TestCase):
         r4 = Rectangle.create(**{'id': 502, 'width': 1})
         r5 = Rectangle.create(**{'id': 503, 'width': 1, 'height': 2})
         r6 = Rectangle.create(**{'id': 504, 'width': 1, 'height': 2, 'x': 3})
-        r7 = Rectangle.create(**{'id': 505, 'width': 1, 'height': 2, 'x': 3, 'y': 4})
+        r7 = Rectangle.create(**{'id': 505, 'width': 1, 'height': 2,
+                                 'x': 3, 'y': 4})
         s1 = Square.create(**{'id': 201})
         s2 = Square.create(**{'id': 202, 'size': 1})
         s3 = Square.create(**{'id': 204, 'size': 1, 'x': 3})
         s4 = Square.create(**{'id': 205, 'size': 1, 'x': 3, 'y': 4})
-        
+
+    def test_save_to_file(self):
+        Rectangle.save_to_file(None)
+        file_contents = Rectangle.load_from_file()
+        self.assertEqual(file_contents, [])
+        Square.save_to_file(None)
+        file_contents = Square.load_from_file()
+        self.assertEqual(file_contents, [])
+        os.remove('Rectangle.json')
+        os.remove('Square.json')
+        Rectangle.save_to_file([])
+        file_contents = Rectangle.load_from_file()
+        self.assertEqual(file_contents, [])
+        Square.save_to_file([])
+        file_contents = Square.load_from_file()
+        self.assertEqual(file_contents, [])
+        os.remove('Rectangle.json')
+        os.remove('Square.json')
+        self.assertEqual(Rectangle.load_from_file(), [])
+        self.assertEqual(Square.load_from_file(), [])
+        s1 = Square(5)
+        list_squares_input = [s1]
+        Square.save_to_file(list_squares_input)
+        list_squares_output = Square.load_from_file()
+        square_11_json = '[Square] (11) 0/0 - 5\n'
+        buf = io.StringIO()
+        sys.stdout = buf
+        for square in list_squares_output:
+            print("{}".format(square))
+        sys.stdout = sys.__stdout__
+        self.assertEqual(buf.getvalue(), square_11_json)
+
+
 if __name__ == '__main__':
     unittest.main()
