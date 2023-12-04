@@ -6,4 +6,5 @@ How to serialize and deserialize a Class<br>
 How to write and read a JSON file<br>
 What is *args and how to use it<br>
 What is **kwargs and how to use it<br>
-How to handle named arguments in a function</p>
+How to handle named arguments in a function<br>
+Use unittest to thoroughly test all cases</p>
