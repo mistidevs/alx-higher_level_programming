@@ -1,8 +1,6 @@
 #!/usr/bin/node
 const char = 'X';
-const { argv } = require('node:process');
-const size = parseInt(argv[2]);
-
+const size = parseInt(process.argv[2]);
 if (!isNaN(size)) {
   for (let i = 0; i < size; i++) {
     let row = '';
