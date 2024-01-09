@@ -1,13 +1,6 @@
 #!/usr/bin/node
-const { argv } = require('node:process');
-
-let numElem = 0;
-while (argv[numElem] !== undefined) {
-  numElem++;
-}
-
-if (numElem < 3) {
-  console.log('No Argument');
+if (process.argv[2] === undefined) {
+  console.log('No argument');
 } else {
-  console.log(argv[2]);
+  console.log(process.argv[2]);
 }
