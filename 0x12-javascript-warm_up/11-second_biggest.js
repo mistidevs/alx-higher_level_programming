@@ -1,14 +1,12 @@
 #!/usr/bin/node
-const { argv } = require('node:process');
-
-if (argv.length < 3) {
+if (process.argv.length < 3) {
   console.log(0);
 } else {
   let firstBiggest = -Infinity;
   let secondBiggest = -Infinity;
 
-  for (let i = 2; i < argv.length; i++) {
-    const num = parseInt(argv[i]);
+  for (let i = 2; i < process.argv.length; i++) {
+    const num = parseInt(process.argv[i]);
 
     if (num > firstBiggest) {
       secondBiggest = firstBiggest;
@@ -17,6 +15,5 @@ if (argv.length < 3) {
       secondBiggest = num;
     }
   }
-
   console.log(secondBiggest);
 }
