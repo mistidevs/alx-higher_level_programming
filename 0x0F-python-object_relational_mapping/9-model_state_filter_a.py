@@ -16,7 +16,7 @@ localhost/{}'.format(user, password, database), pool_pre_ping=True)
     Session = sessionmaker(bind=engine)
     session = Session()
     filtered_states = session.query(State).\
-    filter(State.name.like("%a%")).order_by(State.id).all()
+        filter(State.name.like("%a%")).order_by(State.id).all()
     for state in filtered_states:
         print(f"{state.id}: {state.name}")
 
