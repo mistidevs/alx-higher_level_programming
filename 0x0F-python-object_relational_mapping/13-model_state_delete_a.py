@@ -14,7 +14,8 @@ if __name__ == "__main__":
 localhost/{}'.format(user, password, database), pool_pre_ping=True)
     Session = sessionmaker(bind=engine)
     session = Session()
-    session.query(State).filter(State.name.like("%a%")).delete(synchronize_session='fetch')
+    session.query(State).filter(State.name.like("%a%")).\
+    delete(synchronize_session='fetch')
     session.commit()
 
     session.close()
