@@ -16,5 +16,5 @@ localhost/{}'.format(user, password, database), pool_pre_ping=True)
     session = Session()
     session.query(State).filter(State.name.like("%a%")).delete(synchronize_session='fetch')
     session.commit()
-    
+
     session.close()
