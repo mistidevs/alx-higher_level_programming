@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" Querying all entries in a table to finf those with 'a' """
+""" Adding a new state """
 import sys
 from model_state import Base, State
 from sqlalchemy import (create_engine)
@@ -11,8 +11,10 @@ if __name__ == "__main__":
     Base.metadata.create_all(engine)
     Session = sessionmaker(bind=engine)
     session = Session()
-    filtered_states = session.query(State).filter(State.name.like("%a%")).order_by(State.id).all()
-    for state in filtered_states:
-        print(f"{state.id}: {state.name}")
+    new_state = State(name="Louisiana")
+    session.add(new_state)
+    session.commit()
+    state = session.query(State).filter_by(name=new_state.name).first()
+    print(state.id)
 
     session.close()

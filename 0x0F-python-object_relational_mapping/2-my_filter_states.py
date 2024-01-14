@@ -13,7 +13,8 @@ if __name__ == '__main__':
     db = MySQLdb.connect(user=user, password=password, database=database,
                          host='localhost', port=3306)
     c = db.cursor()
-    c.execute("SELECT * FROM states WHERE name LIKE BINARY '{}' ORDER BY id ASC".format(state))
+    c.execute("SELECT * FROM states WHERE name LIKE BINARY '{}' \
+ORDER BY id ASC".format(state))
     while (row := c.fetchone()) is not None:
         print(row)
 
