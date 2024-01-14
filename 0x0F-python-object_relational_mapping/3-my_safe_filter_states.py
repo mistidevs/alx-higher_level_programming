@@ -13,7 +13,7 @@ if __name__ == '__main__':
     db = MySQLdb.connect(user=user, password=password, database=database,
                          host='localhost', port=3306)
     c = db.cursor()
-    query = "SELECT * FROM states WHERE states.name = %s ORDER BY states.id ASC"
+    query = "SELECT * FROM states WHERE name = %s ORDER BY states.id ASC"
     c.execute(query, (state,))
     while (row := c.fetchone()) is not None:
         print(row)
