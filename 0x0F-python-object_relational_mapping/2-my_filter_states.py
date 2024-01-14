@@ -1,18 +1,20 @@
 #!/usr/bin/python3
-""" Selects all states in the database """
+""" Selects state in the database based on user input """
 
 import MySQLdb
 import sys
 
 if __name__ == '__main__':
-    """ Gets all the states in the table """
+    """ Gets the state the user wants """
     user = sys.argv[1]
     password = sys.argv[2]
     database = sys.argv[3]
+    state = sys.argv[4]
     db = MySQLdb.connect(user=user, password=password, database=database,
                          host='localhost', port=3306)
     c = db.cursor()
-    c.execute("""SELECT * FROM states ORDER BY states.id ASC""")
+    query = "SELECT * FROM states WHERE states.name = %s ORDER BY states.id ASC"
+    c.execute(query, (state,))
     while (row := c.fetchone()) is not None:
         print(row)
 

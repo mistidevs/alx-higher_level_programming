@@ -5,6 +5,7 @@ import MySQLdb
 import sys
 
 if __name__ == '__main__':
+    """ All states starting with N"""
     user = sys.argv[1]
     password = sys.argv[2]
     database = sys.argv[3]
@@ -15,3 +16,6 @@ if __name__ == '__main__':
 ASCII(SUBSTRING(states.name, 1, 1)) = 78 ORDER BY states.id ASC""")
     while (row := c.fetchone()) is not None:
         print(row)
+
+    c.close()
+    db.close()
