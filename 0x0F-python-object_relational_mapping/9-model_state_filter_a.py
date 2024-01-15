@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" Querying all entries in a table to finf those with 'a' """
+""" Querying all entries in a table to find those with 'a' """
 import sys
 from model_state import Base, State
 from sqlalchemy import (create_engine)
