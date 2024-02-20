@@ -8,6 +8,6 @@ request(url, function (error, response, body) {
     return;
   }
   const data = JSON.parse(body);
-  
+
   console.log(data.title);
 });
