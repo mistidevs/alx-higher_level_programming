@@ -1,6 +1,6 @@
 $(document).ready(function() {
     fetch('https://swapi-api.alx-tools.com/api/people/5/?format=json')
-      .then(repsonse => response.json())
+      .then(response => response.json())
       .then(data => {
           const name = data.name;
           $('DIV#character').text(name);

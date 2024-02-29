@@ -1,6 +1,6 @@
 $(document).ready(function() {
     fetch('https://swapi-api.alx-tools.com/api/films/?format=json')
-      .then(repsonse => response.json())
+      .then(response => response.json())
       .then(data => {
           data.results.forEach(movie => {
               let listItem = $('<li></li>').text(movie.title);
